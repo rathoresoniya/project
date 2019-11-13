@@ -1,0 +1,15 @@
+---
+ - hosts: test
+   become: true
+   become_method: sudo
+   tasks:
+    - name: replace telegraf
+      lineinfile: 
+       dest: "/etc/telegraf/telegraf.conf.bk"
+       regexp: "{{ item.from }}"
+       line: "{{item.to}}"
+      with_items:
+       - {from: 'https://192.168.100.133:8086', to: 'urls = ["https://dmon.digivalet.com"]'}
+       - {from: 'database = "MONITORDB"', to: 'database = "test"'}
+       - {from: 'username = "monitor"', to: 'username = "testuser"'}
+       - {from: 'password = "123456789"', to: 'password = "testpass"'}
