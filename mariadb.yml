@@ -1,0 +1,14 @@
+---
+ - hosts: test
+   become: yes
+   become_method: sudo 
+   tasks:
+    - name: Install mariadb
+      yum:
+       name: mariadb-server
+       state: present
+    - name: service starting
+      service: 
+       name: mariadb
+       state: started
+
