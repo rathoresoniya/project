@@ -1,0 +1,11 @@
+---
+ - hosts: test
+    become: yes
+       become_method: sudo
+          tasks:
+              - name: copy index.html
+                    copy:
+                           src: /root/index.html
+                                  dest: /var/www/html/
+                                         backup: yes
+
